@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Iniciar Sesion | Cafeteria Itson</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Iniciar Session</h1>
+      <form method="post">
+        <div class="txt_field">
+          <input type="text" required>
+          <span></span>
+          <label>Usuario</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" required>
+          <span></span>
+          <label>Contraseña</label>
+        </div>
+        <input type="button"class="btn bg-gradient-primary w-100 my-4 mb-2" onclick="login()"  value="Login">
+        <div class="signup_link"></div>
+      </form>
+    </div>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <script>        
+
+
+function login(){ //inicio login al dar clic al boton
+  var url ="http://localhost/store/public";   
+  console.log("hola")
+   $.ajax({   //iniciar ajax para crar token   
+        url: url+'/auth',
+        data: { "user" : $("#user").val(), 
+                "password" : $("#password").val(), 
+                "tipo" : "cliente"
+              },
+        type: "POST",
+        dataType: "json",
+    })
+     .done(function( data, textStatus, jqXHR ) { // lo que regresamos desde la API esta en data
+       
+        console.log("hola le di clic al boton")
+        console.log(data)
+        if(typeof data.error !==  "string"){
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("tipo", data.tipo);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          location.href = "/cafeteria/menu.html";
+        }else{
+          alert(data.error);
+        }       
+    })
+    .fail(function( jqXHR, textStatus, errorThrown ) { // si hay algun error, esta en textStatus
+        
+            console.log( "La solicitud a fallado: " +  textStatus);
+        
+    })  
+} 
+  </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+[
+	{
+		"precio": 100,
+		"id": 1,
+		"title": "Hamburguesa",
+		"description": "Carne 100% de res asada a la parrila, salsa especial, queso americano, mayonesa, lechuga, cebolla, tomate y pepinillos.",
+		"thumbnailUrl": "../img/burger.jpg"
+	},
+	{
+		"precio": 70,
+		"id": 2,
+		"title": "Cafe",
+		"description": "100% angus",
+		"thumbnailUrl": "../img/burger.jpg"
+	},
+	{
+		"precio": 120,
+		"id": 3,
+		"title": "Torta",
+		"description": "100% angus",
+		"thumbnailUrl": "../img/burger.jpg"
+	}
+]
